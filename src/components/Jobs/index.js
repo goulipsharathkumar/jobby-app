@@ -20,6 +20,14 @@ const salaryRangesList = [
   {salaryRangeId: '4000000', label: '40 LPA and above'},
 ]
 
+const locationsList = [
+  {locationId: 'Hyderabad', label: 'Hyderabad'},
+  {locationId: 'Bangalore', label: 'Bangalore'},
+  {locationId: 'Chennai', label: 'Chennai'},
+  {locationId: 'Delhi', label: 'Delhi'},
+  {locationId: 'Mumbai', label: 'Mumbai'},
+]
+
 const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
@@ -36,6 +44,7 @@ class Jobs extends Component {
     searchInput: '',
     activeEmploymentTypes: [],
     activeSalaryRange: '',
+    activeLocations: [],
   }
 
   componentDidMount() {
@@ -71,7 +80,12 @@ class Jobs extends Component {
 
   getJobs = async () => {
     this.setState({jobsApiStatus: apiStatusConstants.inProgress})
-    const {activeEmploymentTypes, activeSalaryRange, searchInput} = this.state
+    const {
+      activeEmploymentTypes,
+      activeSalaryRange,
+      searchInput,
+      activeLocations,
+    } = this.state
     const jwtToken = Cookies.get('jwt_token')
     const employmentType = activeEmploymentTypes.join(',')
     const url = `https://apis.ccbp.in/jobs?employment_type=${employmentType}&minimum_package=${activeSalaryRange}&search=${searchInput}`
@@ -82,7 +96,7 @@ class Jobs extends Component {
     const response = await fetch(url, options)
     if (response.ok) {
       const data = await response.json()
-      const jobsList = data.jobs.map(job => ({
+      let jobsList = data.jobs.map(job => ({
         id: job.id,
         companyLogoUrl: job.company_logo_url,
         title: job.title,
@@ -92,6 +106,14 @@ class Jobs extends Component {
         packagePerAnnum: job.package_per_annum,
         jobDescription: job.job_description,
       }))
+
+      // Client-side location filter
+      if (activeLocations.length > 0) {
+        jobsList = jobsList.filter(job =>
+          activeLocations.includes(job.location),
+        )
+      }
+
       this.setState({jobsList, jobsApiStatus: apiStatusConstants.success})
     } else {
       this.setState({jobsApiStatus: apiStatusConstants.failure})
@@ -128,6 +150,20 @@ class Jobs extends Component {
 
   onChangeSalaryRange = event => {
     this.setState({activeSalaryRange: event.target.value}, this.getJobs)
+  }
+
+  onChangeLocation = event => {
+    const {activeLocations} = this.state
+    const {value, checked} = event.target
+    if (checked) {
+      this.setState(
+        {activeLocations: [...activeLocations, value]},
+        this.getJobs,
+      )
+    } else {
+      const filtered = activeLocations.filter(loc => loc !== value)
+      this.setState({activeLocations: filtered}, this.getJobs)
+    }
   }
 
   renderProfile = () => {
@@ -223,7 +259,12 @@ class Jobs extends Component {
   }
 
   render() {
-    const {searchInput, activeEmploymentTypes, activeSalaryRange} = this.state
+    const {
+      searchInput,
+      activeEmploymentTypes,
+      activeSalaryRange,
+      activeLocations,
+    } = this.state
     return (
       <div className="jobs-page">
         <Header />
@@ -270,6 +311,25 @@ class Jobs extends Component {
                   />
                   <label htmlFor={range.salaryRangeId} className="filter-label">
                     {range.label}
+                  </label>
+                </li>
+              ))}
+            </ul>
+            <hr className="sidebar-divider" />
+            <h2 className="filter-heading">Location</h2>
+            <ul className="filter-list">
+              {locationsList.map(location => (
+                <li key={location.locationId} className="filter-item">
+                  <input
+                    type="checkbox"
+                    id={location.locationId}
+                    value={location.locationId}
+                    className="filter-checkbox"
+                    checked={activeLocations.includes(location.locationId)}
+                    onChange={this.onChangeLocation}
+                  />
+                  <label htmlFor={location.locationId} className="filter-label">
+                    {location.label}
                   </label>
                 </li>
               ))}
