@@ -1,0 +1,274 @@
+.jd-page {
+  min-height: 100vh;
+  background-color: #121212;
+}
+
+.jd-container {
+  padding: 32px 48px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.job-details-card {
+  background-color: #272727;
+  border-radius: 12px;
+  padding: 32px;
+  margin-bottom: 48px;
+}
+
+.jd-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.jd-company-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f8fafc;
+  padding: 6px;
+}
+
+.jd-title {
+  color: #f8fafc;
+  font-size: 22px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 4px;
+}
+
+.rating-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star-icon {
+  color: #fbbf24;
+  font-size: 16px;
+}
+
+.rating {
+  color: #f8fafc;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.jd-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.jd-location-type {
+  display: flex;
+  gap: 20px;
+}
+
+.icon-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.job-icon {
+  color: #f8fafc;
+  font-size: 16px;
+}
+
+.job-text {
+  color: #f8fafc;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.jd-package {
+  color: #f8fafc;
+  font-size: 18px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+}
+
+.jd-divider {
+  border: none;
+  border-top: 1px solid #64748b;
+  margin: 20px 0;
+}
+
+.jd-description-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.jd-section-heading {
+  color: #f8fafc;
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 16px;
+}
+
+.visit-link {
+  color: #6366f1;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  transition: color 0.2s;
+}
+
+.visit-link:hover {
+  color: #4f46e5;
+}
+
+.jd-description {
+  color: #cbd5e1;
+  font-size: 16px;
+  line-height: 1.7;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 32px;
+}
+
+.skills-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 32px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.skill-img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.skill-name {
+  color: #f8fafc;
+  font-size: 14px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.life-at-company {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+}
+
+.lac-description {
+  color: #cbd5e1;
+  font-size: 14px;
+  line-height: 1.7;
+  font-family: 'Roboto', sans-serif;
+  flex: 1;
+}
+
+.lac-img {
+  width: 300px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.similar-jobs-heading {
+  color: #f8fafc;
+  font-size: 24px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 20px;
+}
+
+.similar-jobs-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.jd-failure-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.failure-img {
+  width: 300px;
+  margin-bottom: 24px;
+}
+
+.failure-heading {
+  color: #f8fafc;
+  font-size: 24px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 12px;
+}
+
+.failure-description {
+  color: #7e858e;
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 24px;
+}
+
+.retry-btn {
+  background-color: #6366f1;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: 'Roboto', sans-serif;
+  padding: 12px 32px;
+  transition: background-color 0.2s;
+}
+
+.retry-btn:hover {
+  background-color: #4f46e5;
+}
+
+.loader-container {
+  display: flex;
+  justify-content: center;
+  padding: 60px;
+}
+
+@media (max-width: 768px) {
+  .jd-container {
+    padding: 20px;
+  }
+
+  .life-at-company {
+    flex-direction: column;
+  }
+
+  .lac-img {
+    width: 100%;
+  }
+
+  .jd-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
